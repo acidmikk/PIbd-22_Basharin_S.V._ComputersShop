@@ -38,7 +38,7 @@ namespace ComputersShopView
         }
         private void ИзделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormProducts>();
+            var form = Program.Container.Resolve<FormComputer>();
             form.ShowDialog();
         }
         private void ButtonCreateOrder_Click(object sender, EventArgs e)

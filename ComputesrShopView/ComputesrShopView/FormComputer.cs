@@ -8,13 +8,13 @@ using Unity;
 
 namespace ComputersShopView
 {
-    public partial class FormProducts : Form
+    public partial class FormComputer : Form
     {
         public int Id { set { id = value; } }
-        private readonly IProductLogic _logic;
+        private readonly IComputerLogic _logic;
         private int? id;
         private Dictionary<int, (string, int)> productComponents;
-        public FormProducts(IProductLogic logic)
+        public FormComputer(IComputerLogic logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -25,12 +25,12 @@ namespace ComputersShopView
             {
                 try
                 {
-                    ProductViewModel view = _logic.Read(new ProductBindingModel{ Id = id.Value })?[0];
+                    ComputerViewModel view = _logic.Read(new ComputerBindingModel{ Id = id.Value })?[0];
                     if (view != null)
                     {
-                        textBoxName.Text = view.ProductName;
+                        textBoxName.Text = view.ComputerName;
                         textBoxPrice.Text = view.Price.ToString();
-                        productComponents = view.ProductComponents;
+                        productComponents = view.ComputerComponents;
                         LoadData();
                     }
                 }
@@ -67,7 +67,7 @@ pc.Value.Item2 });
         }
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormProductComponent>();
+            var form = Program.Container.Resolve<FormComputerComponent>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (productComponents.ContainsKey(form.Id))
@@ -85,7 +85,7 @@ pc.Value.Item2 });
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Program.Container.Resolve<FormProductComponent>();
+                var form = Program.Container.Resolve<FormComputerComponent>();
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 form.Id = id;
                 form.Count = productComponents[id].Item2;
@@ -142,12 +142,12 @@ pc.Value.Item2 });
             }
             try
             {
-                _logic.CreateOrUpdate(new ProductBindingModel
+                _logic.CreateOrUpdate(new ComputerBindingModel
                 {
                     Id = id,
-                    ProductName = textBoxName.Text,
+                    ComputerName = textBoxName.Text,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
-                    ProductComponents = productComponents
+                    ComputerComponents = productComponents
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",
                MessageBoxButtons.OK, MessageBoxIcon.Information);

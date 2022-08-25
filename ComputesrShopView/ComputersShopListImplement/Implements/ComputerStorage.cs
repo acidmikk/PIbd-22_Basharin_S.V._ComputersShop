@@ -8,75 +8,75 @@ using System.Linq;
 
 namespace ComputersShopListImplement.Implements
 {
-    public class ProductStorage : IProductStorage
+    public class ComputerStorage : IComputerStorage
     {
         private readonly DataListSingleton source;
-        public ProductStorage()
+        public ComputerStorage()
         {
             source = DataListSingleton.GetInstance();
         }
-        public List<ProductViewModel> GetFullList()
+        public List<ComputerViewModel> GetFullList()
         {
-            var result = new List<ProductViewModel>();
-            foreach (var component in source.Products)
+            var result = new List<ComputerViewModel>();
+            foreach (var component in source.Computers)
             {
                 result.Add(CreateModel(component));
             }
             return result;
         }
-        public List<ProductViewModel> GetFilteredList(ProductBindingModel model)
+        public List<ComputerViewModel> GetFilteredList(ComputerBindingModel model)
         {
             if (model == null)
             {
                 return null;
             }
-            var result = new List<ProductViewModel>();
-            foreach (var product in source.Products)
+            var result = new List<ComputerViewModel>();
+            foreach (var product in source.Computers)
             {
-                if (product.ProductName.Contains(model.ProductName))
+                if (product.ComputerName.Contains(model.ComputerName))
                 {
                     result.Add(CreateModel(product));
                 }
             }
             return result;
         }
-        public ProductViewModel GetElement(ProductBindingModel model)
+        public ComputerViewModel GetElement(ComputerBindingModel model)
         {
             if (model == null)
             {
                 return null;
             }
-            foreach (var product in source.Products)
+            foreach (var product in source.Computers)
             {
-                if (product.Id == model.Id || product.ProductName ==
-                model.ProductName)
+                if (product.Id == model.Id || product.ComputerName ==
+                model.ComputerName)
                 {
                     return CreateModel(product);
                 }
             }
             return null;
         }
-        public void Insert(ProductBindingModel model)
+        public void Insert(ComputerBindingModel model)
         {
-            var tempProduct = new Product
+            var tempProduct = new Computer
             {
                 Id = 1,
-                ProductComponents = new
+                ComputerComponents = new
             Dictionary<int, int>()
             };
-            foreach (var product in source.Products)
+            foreach (var product in source.Computers)
             {
                 if (product.Id >= tempProduct.Id)
                 {
                     tempProduct.Id = product.Id + 1;
                 }
             }
-            source.Products.Add(CreateModel(model, tempProduct));
+            source.Computers.Add(CreateModel(model, tempProduct));
         }
-        public void Update(ProductBindingModel model)
+        public void Update(ComputerBindingModel model)
         {
-            Product tempProduct = null;
-            foreach (var product in source.Products)
+            Computer tempProduct = null;
+            foreach (var product in source.Computers)
             {
                 if (product.Id == model.Id)
                 {
@@ -89,52 +89,52 @@ namespace ComputersShopListImplement.Implements
             }
             CreateModel(model, tempProduct);
         }
-        public void Delete(ProductBindingModel model)
+        public void Delete(ComputerBindingModel model)
         {
-            for (int i = 0; i < source.Products.Count; ++i)
+            for (int i = 0; i < source.Computers.Count; ++i)
             {
-                if (source.Products[i].Id == model.Id)
+                if (source.Computers[i].Id == model.Id)
                 {
-                    source.Products.RemoveAt(i);
+                    source.Computers.RemoveAt(i);
                     return;
                 }
             }
             throw new Exception("Элемент не найден");
         }
-        private static Product CreateModel(ProductBindingModel model, Product
+        private static Computer CreateModel(ComputerBindingModel model, Computer
         product)
         {
-            product.ProductName = model.ProductName;
+            product.ComputerName = model.ComputerName;
             product.Price = model.Price;
             // удаляем убранные
-            foreach (var key in product.ProductComponents.Keys.ToList())
+            foreach (var key in product.ComputerComponents.Keys.ToList())
             {
-                if (!model.ProductComponents.ContainsKey(key))
+                if (!model.ComputerComponents.ContainsKey(key))
                 {
-                    product.ProductComponents.Remove(key);
+                    product.ComputerComponents.Remove(key);
                 }
             }
             // обновляем существуюущие и добавляем новые
-            foreach (var component in model.ProductComponents)
+            foreach (var component in model.ComputerComponents)
             {
-                if (product.ProductComponents.ContainsKey(component.Key))
+                if (product.ComputerComponents.ContainsKey(component.Key))
                 {
-                    product.ProductComponents[component.Key] =
-                    model.ProductComponents[component.Key].Item2;
+                    product.ComputerComponents[component.Key] =
+                    model.ComputerComponents[component.Key].Item2;
                 }
                 else
                 {
-                    product.ProductComponents.Add(component.Key,
-                    model.ProductComponents[component.Key].Item2);
+                    product.ComputerComponents.Add(component.Key,
+                    model.ComputerComponents[component.Key].Item2);
                 }
             }
             return product;
         }
-        private ProductViewModel CreateModel(Product product)
+        private ComputerViewModel CreateModel(Computer product)
         {
             // требуется дополнительно получить список компонентов для изделия сназваниями и их количество
-        var productComponents = new Dictionary<int, (string, int)>();
-            foreach (var pc in product.ProductComponents)
+        var computerComponents = new Dictionary<int, (string, int)>();
+            foreach (var pc in product.ComputerComponents)
             {
                 string componentName = string.Empty;
                 foreach (var component in source.Components)
@@ -145,14 +145,14 @@ namespace ComputersShopListImplement.Implements
                         break;
                     }
                 }
-                productComponents.Add(pc.Key, (componentName, pc.Value));
+                computerComponents.Add(pc.Key, (componentName, pc.Value));
             }
-            return new ProductViewModel
+            return new ComputerViewModel
             {
                 Id = product.Id,
-                ProductName = product.ProductName,
+                ComputerName = product.ComputerName,
                 Price = product.Price,
-                ProductComponents = productComponents
+                ComputerComponents = computerComponents
             };
         }
     }

@@ -34,26 +34,26 @@
             this.buttonOrederReady = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
             this.buttonRef = new System.Windows.Forms.Button();
-            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
-            
             // 
             // dataGridView
             // 
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(0, 31);
+            this.dataGridView.Location = new System.Drawing.Point(0, 23);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 29;
-            this.dataGridView.Size = new System.Drawing.Size(872, 466);
+            this.dataGridView.Size = new System.Drawing.Size(763, 350);
             this.dataGridView.TabIndex = 1;
             // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(878, 31);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(768, 23);
+            this.buttonCreateOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
-            this.buttonCreateOrder.Size = new System.Drawing.Size(203, 29);
+            this.buttonCreateOrder.Size = new System.Drawing.Size(178, 22);
             this.buttonCreateOrder.TabIndex = 2;
             this.buttonCreateOrder.Text = "Создать заказ";
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
@@ -61,9 +61,10 @@
             // 
             // buttonTakeOrderPreparing
             // 
-            this.buttonTakeOrderPreparing.Location = new System.Drawing.Point(878, 82);
+            this.buttonTakeOrderPreparing.Location = new System.Drawing.Point(768, 62);
+            this.buttonTakeOrderPreparing.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonTakeOrderPreparing.Name = "buttonTakeOrderPreparing";
-            this.buttonTakeOrderPreparing.Size = new System.Drawing.Size(203, 29);
+            this.buttonTakeOrderPreparing.Size = new System.Drawing.Size(178, 22);
             this.buttonTakeOrderPreparing.TabIndex = 3;
             this.buttonTakeOrderPreparing.Text = "Отдать на выполнение";
             this.buttonTakeOrderPreparing.UseVisualStyleBackColor = true;
@@ -71,9 +72,10 @@
             // 
             // buttonOrederReady
             // 
-            this.buttonOrederReady.Location = new System.Drawing.Point(878, 136);
+            this.buttonOrederReady.Location = new System.Drawing.Point(768, 102);
+            this.buttonOrederReady.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOrederReady.Name = "buttonOrederReady";
-            this.buttonOrederReady.Size = new System.Drawing.Size(203, 29);
+            this.buttonOrederReady.Size = new System.Drawing.Size(178, 22);
             this.buttonOrederReady.TabIndex = 4;
             this.buttonOrederReady.Text = "Заказ готов";
             this.buttonOrederReady.UseVisualStyleBackColor = true;
@@ -81,9 +83,10 @@
             // 
             // buttonIssuedOrder
             // 
-            this.buttonIssuedOrder.Location = new System.Drawing.Point(878, 188);
+            this.buttonIssuedOrder.Location = new System.Drawing.Point(768, 141);
+            this.buttonIssuedOrder.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonIssuedOrder.Name = "buttonIssuedOrder";
-            this.buttonIssuedOrder.Size = new System.Drawing.Size(203, 29);
+            this.buttonIssuedOrder.Size = new System.Drawing.Size(178, 22);
             this.buttonIssuedOrder.TabIndex = 5;
             this.buttonIssuedOrder.Text = "Заказ выдан";
             this.buttonIssuedOrder.UseVisualStyleBackColor = true;
@@ -91,9 +94,10 @@
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(878, 240);
+            this.buttonRef.Location = new System.Drawing.Point(768, 180);
+            this.buttonRef.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonRef.Name = "buttonRef";
-            this.buttonRef.Size = new System.Drawing.Size(203, 29);
+            this.buttonRef.Size = new System.Drawing.Size(178, 22);
             this.buttonRef.TabIndex = 6;
             this.buttonRef.Text = "Обновить список";
             this.buttonRef.UseVisualStyleBackColor = true;
@@ -101,25 +105,21 @@
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 509);
+            this.ClientSize = new System.Drawing.Size(956, 382);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonIssuedOrder);
             this.Controls.Add(this.buttonOrederReady);
             this.Controls.Add(this.buttonTakeOrderPreparing);
             this.Controls.Add(this.buttonCreateOrder);
             this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.menuStrip);
-            this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMain";
-            this.Text = "Суши-Бар";
+            this.Text = "Компьютерный магазин";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

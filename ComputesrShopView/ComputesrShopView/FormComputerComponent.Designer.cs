@@ -1,6 +1,6 @@
 ﻿namespace ComputersShopView
 {
-    partial class FormProductComponent
+    partial class FormComputerComponent
     {
         /// <summary>
         /// Required designer variable.

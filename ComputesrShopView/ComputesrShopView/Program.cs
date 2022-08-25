@@ -39,10 +39,10 @@ namespace ComputersShopView
             var currentContainer = new UnityContainer();
             currentContainer.RegisterType<IComponentStorage, ComponentStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IProductStorage, ProductStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComputerStorage, ComputerStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IComponentLogic, ComponentLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IOrderLogic, OrderLogic>(new HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IProductLogic, ProductLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IComputerLogic, ComputerLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

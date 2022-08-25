@@ -8,9 +8,9 @@ namespace ComputersShopView
 {
     public partial class FormCreateOrder : Form
     {
-        private readonly IProductLogic _logicP;
+        private readonly IComputerLogic _logicP;
         private readonly IOrderLogic _logicO;
-        public FormCreateOrder(IProductLogic logicP, IOrderLogic logicO)
+        public FormCreateOrder(IComputerLogic logicP, IOrderLogic logicO)
         {
             InitializeComponent();
             _logicP = logicP;
@@ -28,7 +28,7 @@ namespace ComputersShopView
                 try
                 {
                     int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                    ProductViewModel product = _logicP.Read(new ProductBindingModel{ Id = id })?[0];
+                    ComputerViewModel product = _logicP.Read(new ComputerBindingModel{ Id = id })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * product?.Price ?? 0).ToString();
                 }
