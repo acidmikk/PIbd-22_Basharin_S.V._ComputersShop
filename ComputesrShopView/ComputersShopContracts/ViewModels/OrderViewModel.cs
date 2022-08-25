@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace ComputersShopContracts.ViewModels
 {
-    internal class OrderViewModel
+    public class OrderViewModel
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
