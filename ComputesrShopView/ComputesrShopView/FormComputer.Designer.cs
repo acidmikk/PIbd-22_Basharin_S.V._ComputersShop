@@ -185,7 +185,7 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
-            // FormСomputers
+            // FormComputer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -197,8 +197,9 @@
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FormСomputers";
+            this.Name = "FormComputer";
             this.Text = "FormComputer";
+            this.Load += new System.EventHandler(this.FormProduct_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);

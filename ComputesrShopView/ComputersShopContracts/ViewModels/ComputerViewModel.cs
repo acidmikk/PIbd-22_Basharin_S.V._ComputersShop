@@ -9,7 +9,7 @@ namespace ComputersShopContracts.ViewModels
     public class ComputerViewModel
     {
         public int Id { get; set; }
-        [DisplayName("Название изделия")]
+        [DisplayName("Название компьютера")]
         public string ComputerName { get; set; }
         [DisplayName("Цена")]
         public decimal Price { get; set; }

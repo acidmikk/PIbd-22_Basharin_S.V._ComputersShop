@@ -8,27 +8,44 @@ namespace ComputersShopView
 {
     public partial class FormCreateOrder : Form
     {
-        private readonly IComputerLogic _logicP;
+        private readonly IComputerLogic _logicC;
         private readonly IOrderLogic _logicO;
-        public FormCreateOrder(IComputerLogic logicP, IOrderLogic logicO)
+        public FormCreateOrder(IComputerLogic logicC, IOrderLogic logicO)
         {
             InitializeComponent();
-            _logicP = logicP;
+            _logicC = logicC;
             _logicO = logicO;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
-            // прописать логику
+            try
+            {
+                List<ComputerViewModel> listC = _logicC.Read(null);
+
+                if (listC != null)
+                {
+                    comboBoxComputer.DisplayMember = "ComputerName";
+                    comboBoxComputer.ValueMember = "Id";
+                    comboBoxComputer.DataSource = listC;
+                    comboBoxComputer.SelectedItem = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void CalcSum()
         {
-            if (comboBoxProduct.SelectedValue != null &&
-           !string.IsNullOrEmpty(textBoxCount.Text))
+            if (comboBoxComputer.SelectedValue != null && !string.IsNullOrEmpty(textBoxCount.Text))
             {
                 try
                 {
-                    int id = Convert.ToInt32(comboBoxProduct.SelectedValue);
-                    ComputerViewModel product = _logicP.Read(new ComputerBindingModel{ Id = id })?[0];
+                    int id = Convert.ToInt32(comboBoxComputer.SelectedValue);
+                    ComputerViewModel? product = _logicC.Read(new ComputerBindingModel
+                    { 
+                        Id = id 
+                    })?[0];
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * product?.Price ?? 0).ToString();
                 }
@@ -42,7 +59,7 @@ namespace ComputersShopView
         {
             CalcSum();
         }
-        private void ComboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxComputer_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -54,7 +71,7 @@ namespace ComputersShopView
                MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxProduct.SelectedValue == null)
+            if (comboBoxComputer.SelectedValue == null)
             {
                 MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK,
                MessageBoxIcon.Error);
@@ -64,7 +81,7 @@ namespace ComputersShopView
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
-                    ProductId = Convert.ToInt32(comboBoxProduct.SelectedValue),
+                    ProductId = Convert.ToInt32(comboBoxComputer.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

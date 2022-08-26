@@ -5,7 +5,6 @@ using ComputersShopListImplement.Models;
 using System;
 using System.Collections.Generic;
 
-
 namespace ComputersShopListImplement.Implements
 {
     public class ComponentStorage : IComponentStorage
@@ -48,8 +47,7 @@ namespace ComputersShopListImplement.Implements
             }
             foreach (var component in source.Components)
             {
-                if (component.Id == model.Id || component.ComponentName ==
-               model.ComponentName)
+                if (component.Id == model.Id || component.ComponentName == model.ComponentName)
                 {
                     return CreateModel(component);
                 }

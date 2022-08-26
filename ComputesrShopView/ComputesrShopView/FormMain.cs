@@ -23,12 +23,17 @@ namespace ComputersShopView
             try
             {
                 var list = _orderLogic.Read(null);
-                // прописать логику
+                if (list != null)
+                {
+                    dataGridView.DataSource = list;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void КомпонентыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,9 +41,9 @@ namespace ComputersShopView
             var form = Program.Container.Resolve<FormComponents>();
             form.ShowDialog();
         }
-        private void ИзделияToolStripMenuItem_Click(object sender, EventArgs e)
+        private void КомпьютерыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Program.Container.Resolve<FormComputer>();
+            var form = Program.Container.Resolve<FormComputers>();
             form.ShowDialog();
         }
         private void ButtonCreateOrder_Click(object sender, EventArgs e)
@@ -56,8 +61,7 @@ namespace ComputersShopView
                 {
                     _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel
                     {
-                        OrderId =
-                   id
+                        OrderId = id
                     });
                     LoadData();
                 }
