@@ -14,8 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ComputersShopBusinessLogic\ComputersShopBusinessLogic.csproj" />
-    <ProjectReference Include="..\ComputersShopContracts\ComputersShopContracts.csproj" />
-    <ProjectReference Include="..\ComputersShopListImplement\ComputersShopListImplement.csproj" />
+    <ProjectReference Include="..\ComputersShopFileImplement\ComputersShopFileImplement.csproj" />
   </ItemGroup>
 
 </Project>
