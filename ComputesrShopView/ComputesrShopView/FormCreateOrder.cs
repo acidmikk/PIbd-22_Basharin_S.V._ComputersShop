@@ -81,7 +81,7 @@ namespace ComputersShopView
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
-                    ProductId = Convert.ToInt32(comboBoxComputer.SelectedValue),
+                    ComputerId = Convert.ToInt32(comboBoxComputer.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
                 });

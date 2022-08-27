@@ -31,6 +31,7 @@ namespace ComputersShopBusinessLogic.BusinessLogics
         {
             _orderStorage.Insert(new OrderBindingModel
             {
+                ComputerId = model.ComputerId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -71,7 +72,7 @@ namespace ComputersShopBusinessLogic.BusinessLogics
             {
                 throw new Exception("Заказ не найден");
             }
-            if (!order.Status.Equals("Готовится"))
+            if (!order.Status.Equals("Выполняется"))
             {
                 throw new Exception("Заказ не находится в статусе \"Готовится\" ");
             }

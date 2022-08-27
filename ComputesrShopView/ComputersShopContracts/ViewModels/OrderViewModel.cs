@@ -7,7 +7,7 @@ namespace ComputersShopContracts.ViewModels
     {
         public int Id { get; set; }
         public int ComputerId { get; set; }
-        [DisplayName("Изделие")]
+        [DisplayName("Компьютер")]
         public string ComputerName { get; set; }
         [DisplayName("Количество")]
         public int Count { get; set; }
