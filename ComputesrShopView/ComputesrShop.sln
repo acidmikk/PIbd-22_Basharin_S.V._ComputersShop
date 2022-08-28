@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopContracts", "C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopBusinessLogic", "ComputersShopBusinessLogic\ComputersShopBusinessLogic.csproj", "{94BF5FE3-6A98-46D5-A02E-C7283575D456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopFileImplement", "ComputersShopFileImplement\ComputersShopFileImplement.csproj", "{6458719F-D203-4BF4-977F-918DC47CDB70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopFileImplement", "ComputersShopFileImplement\ComputersShopFileImplement.csproj", "{6458719F-D203-4BF4-977F-918DC47CDB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopDatabaseImplement", "ComputersShopDatabaseImplement\ComputersShopDatabaseImplement.csproj", "{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6458719F-D203-4BF4-977F-918DC47CDB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6458719F-D203-4BF4-977F-918DC47CDB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6458719F-D203-4BF4-977F-918DC47CDB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
