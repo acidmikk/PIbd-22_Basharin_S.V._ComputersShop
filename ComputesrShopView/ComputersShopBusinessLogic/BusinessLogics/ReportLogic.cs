@@ -13,17 +13,15 @@ namespace ComputersShopBusinessLogic.BusinessLogics
     public class ReportLogic : IReportLogic
     {
         private readonly IComponentStorage _componentStorage;
-        private readonly IComputerStorage _productStorage;
+        private readonly IComputerStorage _computerStorage;
         private readonly IOrderStorage _orderStorage;
         private readonly ComputerSaveToExcel _saveToExcel;
         private readonly ComputerSaveToWord _saveToWord;
         private readonly ComputerSaveToPdf _saveToPdf;
-        public ReportLogic(IComputerStorage productStorage, IComponentStorage
-       componentStorage, IOrderStorage orderStorage,
-        ComputerSaveToExcel saveToExcel, ComputerSaveToWord saveToWord,
-       ComputerSaveToPdf saveToPdf)
+        public ReportLogic(IComputerStorage computerStorage, IComponentStorage componentStorage, IOrderStorage orderStorage,
+        ComputerSaveToExcel saveToExcel, ComputerSaveToWord saveToWord, ComputerSaveToPdf saveToPdf)
         {
-            _productStorage = productStorage;
+            _computerStorage = computerStorage;
             _componentStorage = componentStorage;
             _orderStorage = orderStorage;
             _saveToExcel = saveToExcel;
@@ -33,25 +31,20 @@ namespace ComputersShopBusinessLogic.BusinessLogics
         public List<ReportComputerComponentViewModel> GetComputerComponent()
         {
             var components = _componentStorage.GetFullList();
-            var products = _productStorage.GetFullList();
+            var computers = _computerStorage.GetFullList();
             var list = new List<ReportComputerComponentViewModel>();
-            foreach (var component in components)
+            foreach (var computer in computers)
             {
                 var record = new ReportComputerComponentViewModel
                 {
-                    ComponentName = component.ComponentName,
-                    Computers = new List<Tuple<string, int>>(),
+                    ComputerName = computer.ComputerName,
+                    Components = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var product in products)
+                foreach (var detail in computer.ComputerComponents)
                 {
-                    if (product.ComputerComponents.ContainsKey(component.Id))
-                    {
-                        record.Computers.Add(new Tuple<string, int>(product.ComputerName,
-                       product.ComputerComponents[component.Id].Item2));
-                        record.TotalCount +=
-                       product.ComputerComponents[component.Id].Item2;
-                    }
+                    record.Components.Add(new Tuple<string, int>(detail.Value.Item1, detail.Value.Item2));
+                    record.TotalCount += detail.Value.Item2;
                 }
                 list.Add(record);
             }
@@ -79,20 +72,20 @@ namespace ComputersShopBusinessLogic.BusinessLogics
             _saveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
-                Components = _componentStorage.GetFullList()
+                Title = "Список компьютеров",
+                Computers = _computerStorage.GetFullList()
             });
         }
         /// <summary>
         /// Сохранение компонент с указаеним продуктов в файл-Excel
         /// </summary>
         /// <param name="model"></param>
-        public void SaveProductComponentToExcelFile(ReportBindingModel model)
+        public void SaveComputerComponentToExcelFile(ReportBindingModel model)
         {
             _saveToExcel.CreateReport(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список компонент",
+                Title = "Список компьютеров",
                 ComputerComponents = GetComputerComponent()
             });
         }

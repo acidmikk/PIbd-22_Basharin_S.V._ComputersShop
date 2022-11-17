@@ -26,7 +26,7 @@ namespace ComputersShopContracts.BusinessLogicsContracts
         /// Сохранение компонент с указаеним продуктов в файл-Excel
         /// </summary>
         /// <param name="model"></param>
-        void SaveProductComponentToExcelFile(ReportBindingModel model);
+        void SaveComputerComponentToExcelFile(ReportBindingModel model);
         /// <summary>
         /// Сохранение заказов в файл-Pdf
         /// </summary>

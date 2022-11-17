@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopView", "ComputesrShopView\ComputersShopView.csproj", "{AA08DAF1-B82D-4B68-8F76-9456F8822B47}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B4833DC9-C618-44F1-8751-E43C7E1CC20A} = {B4833DC9-C618-44F1-8751-E43C7E1CC20A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopContracts", "ComputersShopContracts\ComputersShopContracts.csproj", "{B4833DC9-C618-44F1-8751-E43C7E1CC20A}"
 EndProject
@@ -11,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopBusinessLogic"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopFileImplement", "ComputersShopFileImplement\ComputersShopFileImplement.csproj", "{6458719F-D203-4BF4-977F-918DC47CDB70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopDatabaseImplement", "ComputersShopDatabaseImplement\ComputersShopDatabaseImplement.csproj", "{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopDatabaseImplement", "ComputersShopDatabaseImplement\ComputersShopDatabaseImplement.csproj", "{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

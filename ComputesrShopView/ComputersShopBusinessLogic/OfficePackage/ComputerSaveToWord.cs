@@ -20,12 +20,12 @@ WordTextProperties { Bold = true, Size = "24", }) },
                     JustificationType = WordJustificationType.Center
                 }
             });
-            foreach (var component in info.Components)
+            foreach (var computer in info.Computers)
             {
                 CreateParagraph(new WordParagraph
                 {
                     Texts = new List<(string, WordTextProperties)> {
-(component.ComponentName, new WordTextProperties { Size = "24", }) },
+                        (computer.ComputerName, new WordTextProperties { Size = "24", }) },
                     TextProperties = new WordTextProperties
                     {
                         Size = "24",

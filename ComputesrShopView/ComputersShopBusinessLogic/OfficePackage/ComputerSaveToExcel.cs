@@ -32,11 +32,11 @@ namespace ComputersShopBusinessLogic.OfficePackage
                 {
                     ColumnName = "A",
                     RowIndex = rowIndex,
-                    Text = pc.ComponentName,
+                    Text = pc.ComputerName,
                     StyleInfo = ExcelStyleInfoType.Text
                 });
                 rowIndex++;
-                foreach (var product in pc.Products)
+                foreach (var product in pc.Components)
                 {
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
