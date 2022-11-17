@@ -108,7 +108,6 @@ namespace ComputersShopFileImplement.Implements
         }
         private ComputerViewModel CreateModel(Computer product)
         {
-            // требуется дополнительно получить список компонентов для изделия сназваниями и их количество
             return new ComputerViewModel
             {
                 Id = product.Id,

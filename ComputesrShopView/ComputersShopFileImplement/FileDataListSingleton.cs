@@ -32,6 +32,13 @@ namespace ComputersShopFileImplement
             }
             return instance;
         }
+        ~FileDataListSingleton()
+        {
+            SaveComponents();
+            SaveOrders();
+            SaveComputers();
+        }
+
         public static void SaveFileDataListSingleton()
         {
             instance.SaveComponents();
@@ -89,11 +96,10 @@ namespace ComputersShopFileImplement
                 foreach (var elem in xElements)
                 {
                     var computerComp = new Dictionary<int, int>();
-                    foreach (var component in
-                   elem.Element("ProductComponents").Elements("ComputerComponent").ToList())
+                    foreach (var component in elem.Element("ComputerComponents").Elements("ComputerComponent").ToList())
                     {
                         computerComp.Add(Convert.ToInt32(component.Element("Key").Value),
-                       Convert.ToInt32(component.Element("Value").Value));
+                            Convert.ToInt32(component.Element("Value").Value));
                     }
                     list.Add(new Computer
                     {
