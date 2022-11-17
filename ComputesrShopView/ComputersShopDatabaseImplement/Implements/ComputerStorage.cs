@@ -48,8 +48,7 @@ namespace ComputersShopDatabaseImplement.Implements
             var car = context.Computers
             .Include(rec => rec.ComputerComponents)
             .ThenInclude(rec => rec.Component)
-            .FirstOrDefault(rec => rec.ComputerName == model.ComputerName ||
-            rec.Id == model.Id);
+            .FirstOrDefault(rec => rec.ComputerName == model.ComputerName || rec.Id == model.Id);
             return car != null ? CreateModel(car) : null;
         }
         public void Insert(ComputerBindingModel model)

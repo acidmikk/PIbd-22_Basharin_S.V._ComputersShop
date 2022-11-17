@@ -18,8 +18,7 @@ namespace ComputersShopDatabaseImplement.Models
         public int Count { get; set; }
 
         [Required]
-        public decimal Sum { get; set; }
-
+        public int Sum { get; set; }
         [Required]
         public OrderStatus Status { get; set; }
 
