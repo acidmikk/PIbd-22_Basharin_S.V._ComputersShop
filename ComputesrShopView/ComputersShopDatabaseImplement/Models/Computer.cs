@@ -14,7 +14,7 @@ namespace ComputersShopDatabaseImplement.Models
         [Required]
         public string ComputerName { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
         [ForeignKey("ComputerId")]
         public virtual List<ComputerComponent> ComputerComponents { get; set; }

@@ -70,7 +70,7 @@ namespace ComputersShopFileImplement
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         ComputerId = Convert.ToInt32(elem.Element("ComputerId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
-                        Sum = Convert.ToDecimal(elem.Element("Sum").Value),
+                        Sum = Convert.ToInt32(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
                         DateImplement = string.IsNullOrEmpty(elem.Element("DateImplement").Value) ? (DateTime?)null : Convert.ToDateTime(elem.Element("DateImplement").Value),

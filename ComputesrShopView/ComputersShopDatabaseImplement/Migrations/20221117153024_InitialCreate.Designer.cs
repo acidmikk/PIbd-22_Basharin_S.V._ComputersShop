@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ComputersShopDatabaseImplement.Migrations
 {
     [DbContext(typeof(ComputerShopDatabase))]
-    [Migration("20220828082231_InitialCreate")]
+    [Migration("20221117153024_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,8 +53,8 @@ namespace ComputersShopDatabaseImplement.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -110,8 +110,8 @@ namespace ComputersShopDatabaseImplement.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Sum")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Sum")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

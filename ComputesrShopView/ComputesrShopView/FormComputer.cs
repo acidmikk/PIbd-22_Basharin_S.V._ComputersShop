@@ -146,7 +146,7 @@ pc.Value.Item2 });
                 {
                     Id = id,
                     ComputerName = textBoxName.Text,
-                    Price = Convert.ToDecimal(textBoxPrice.Text),
+                    Price = Convert.ToInt32(textBoxPrice.Text),
                     ComputerComponents = productComponents
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение",

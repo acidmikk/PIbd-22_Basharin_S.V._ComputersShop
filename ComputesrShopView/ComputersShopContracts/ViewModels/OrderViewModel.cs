@@ -12,7 +12,7 @@ namespace ComputersShopContracts.ViewModels
         [DisplayName("Количество")]
         public int Count { get; set; }
         [DisplayName("Сумма")]
-        public decimal Sum { get; set; }
+        public int Sum { get; set; }
         [DisplayName("Статус")]
         public string Status { get; set; }
         [DisplayName("Дата создания")]

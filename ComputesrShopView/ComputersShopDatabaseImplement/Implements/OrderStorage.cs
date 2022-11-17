@@ -59,7 +59,7 @@ namespace ComputersShopDatabaseImplement.Implements
             }
             using var context = new ComputerShopDatabase();
             var component = context.Orders
-            .FirstOrDefault(rec => rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.Id == model.Id);
             return component != null ? CreateModel(component) : null;
         }
 
@@ -111,7 +111,6 @@ namespace ComputersShopDatabaseImplement.Implements
             {
                 Id = order.Id,
                 ComputerId = order.ComputerId,
-                ComputerName = order.Computer.ComputerName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status.ToString(),
