@@ -37,13 +37,14 @@ namespace ComputersShopDatabaseImplement.Implements
                 return null;
             }
             using var context = new ComputerShopDatabase();
-            return context.Orders.Include(rec => rec.Computer)
-            .Where(rec => rec.ComputerId == model.ComputerId || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
-            //.Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)&& (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+            return context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client)
+            .Where(rec => rec.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) || (rec.ClientId == model.ClientId))
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
                 ComputerId = rec.ComputerId,
+                ClientId = rec.ClientId,
+                ClientFullName = rec.Client.FullName,
                 ComputerName = rec.Computer.ComputerName,
                 Count = rec.Count,
                 Sum = rec.Sum,
