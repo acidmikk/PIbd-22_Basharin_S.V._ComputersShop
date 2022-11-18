@@ -48,15 +48,17 @@
             this.panel.Controls.Add(this.label1);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1271, 50);
+            this.panel.Size = new System.Drawing.Size(1112, 38);
             this.panel.TabIndex = 0;
             // 
             // ButtonToPdf
             // 
-            this.ButtonToPdf.Location = new System.Drawing.Point(1109, 7);
+            this.ButtonToPdf.Location = new System.Drawing.Point(970, 5);
+            this.ButtonToPdf.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonToPdf.Name = "ButtonToPdf";
-            this.ButtonToPdf.Size = new System.Drawing.Size(135, 29);
+            this.ButtonToPdf.Size = new System.Drawing.Size(118, 22);
             this.ButtonToPdf.TabIndex = 5;
             this.ButtonToPdf.Text = "В PDF";
             this.ButtonToPdf.UseVisualStyleBackColor = true;
@@ -64,9 +66,10 @@
             // 
             // ButtonMake
             // 
-            this.ButtonMake.Location = new System.Drawing.Point(637, 7);
+            this.ButtonMake.Location = new System.Drawing.Point(557, 5);
+            this.ButtonMake.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonMake.Name = "ButtonMake";
-            this.ButtonMake.Size = new System.Drawing.Size(173, 29);
+            this.ButtonMake.Size = new System.Drawing.Size(151, 22);
             this.ButtonMake.TabIndex = 4;
             this.ButtonMake.Text = "Сформировать";
             this.ButtonMake.UseVisualStyleBackColor = true;
@@ -74,42 +77,45 @@
             // 
             // dateTimePickerTo
             // 
-            this.dateTimePickerTo.Location = new System.Drawing.Point(326, 9);
+            this.dateTimePickerTo.Location = new System.Drawing.Point(285, 7);
+            this.dateTimePickerTo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerTo.Name = "dateTimePickerTo";
-            this.dateTimePickerTo.Size = new System.Drawing.Size(250, 27);
+            this.dateTimePickerTo.Size = new System.Drawing.Size(219, 23);
             this.dateTimePickerTo.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(293, 14);
+            this.label2.Location = new System.Drawing.Point(256, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 20);
+            this.label2.Size = new System.Drawing.Size(21, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "по";
             // 
             // dateTimePickerFrom
             // 
-            this.dateTimePickerFrom.Location = new System.Drawing.Point(37, 9);
+            this.dateTimePickerFrom.Location = new System.Drawing.Point(32, 7);
+            this.dateTimePickerFrom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerFrom.Name = "dateTimePickerFrom";
-            this.dateTimePickerFrom.Size = new System.Drawing.Size(250, 27);
+            this.dateTimePickerFrom.Size = new System.Drawing.Size(219, 23);
             this.dateTimePickerFrom.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
+            this.label1.Location = new System.Drawing.Point(11, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 20);
+            this.label1.Size = new System.Drawing.Size(15, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "С";
             // 
             // FormReportOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1271, 450);
+            this.ClientSize = new System.Drawing.Size(1112, 338);
             this.Controls.Add(this.panel);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormReportOrders";
             this.Text = "FormReportOrders";
             this.panel.ResumeLayout(false);

@@ -38,18 +38,19 @@ namespace ComputersShopDatabaseImplement.Implements
             }
             using var context = new ComputerShopDatabase();
             return context.Orders.Include(rec => rec.Computer)
-            .Where(rec => rec.ComputerId == model.ComputerId)
-           .Select(rec => new OrderViewModel
-           {
-               Id = rec.Id,
-               ComputerId = rec.ComputerId,
-               ComputerName = rec.Computer.ComputerName,
-               Count = rec.Count,
-               Sum = rec.Sum,
-               Status = rec.Status.ToString(),
-               DateCreate = rec.DateCreate,
-               DateImplement = rec.DateImplement
-           }).ToList();
+            .Where(rec => rec.ComputerId == model.ComputerId || rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+            //.Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)&& (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+            .Select(rec => new OrderViewModel
+            {
+                Id = rec.Id,
+                ComputerId = rec.ComputerId,
+                ComputerName = rec.Computer.ComputerName,
+                Count = rec.Count,
+                Sum = rec.Sum,
+                Status = rec.Status.ToString(),
+                DateCreate = rec.DateCreate,
+                DateImplement = rec.DateImplement
+            }).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
