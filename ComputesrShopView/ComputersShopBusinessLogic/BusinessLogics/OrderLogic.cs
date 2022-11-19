@@ -32,6 +32,7 @@ namespace ComputersShopBusinessLogic.BusinessLogics
             _orderStorage.Insert(new OrderBindingModel
             {
                 ComputerId = model.ComputerId,
+                ClientId = model.ClientId,
                 Count = model.Count,
                 Sum = model.Sum,
                 DateCreate = DateTime.Now,
@@ -56,6 +57,7 @@ namespace ComputersShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ComputerId = order.ComputerId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -81,6 +83,7 @@ namespace ComputersShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ComputerId = order.ComputerId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
@@ -106,6 +109,7 @@ namespace ComputersShopBusinessLogic.BusinessLogics
             {
                 Id = order.Id,
                 ComputerId = order.ComputerId,
+                ClientId = order.ClientId,
                 Count = order.Count,
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,

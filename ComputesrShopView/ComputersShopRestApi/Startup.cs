@@ -20,9 +20,11 @@ namespace ComputersShopRestApi
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IComputerStorage, ComputerStorage>();
+
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IComputerLogic, ComputerLogic>();
+
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo{ Title = "ComputersShopRestApi", Version = "v1" }); });
         }

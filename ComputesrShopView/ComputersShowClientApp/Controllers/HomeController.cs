@@ -58,8 +58,7 @@ namespace ComputersShowClientApp.Controllers
         {
             return View(new ErrorViewModel
             {
-                RequestId = Activity.Current?.Id ??
-HttpContext.TraceIdentifier
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
         }
         [HttpGet]
@@ -130,10 +129,9 @@ HttpContext.TraceIdentifier
             Response.Redirect("Index");
         }
         [HttpPost]
-        public decimal Calc(decimal count, int computer)
+        public decimal Calc(int count, int computer)
         {
-            ComputerViewModel comp =
-            APIClient.GetRequest<ComputerViewModel>($"api/main/getproduct?computerId={computer}");
+            ComputerViewModel comp = APIClient.GetRequest<ComputerViewModel>($"api/main/getcomputer?computerId={computer}");
             return count * comp.Price;
         }
 

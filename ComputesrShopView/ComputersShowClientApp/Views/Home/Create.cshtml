@@ -6,7 +6,7 @@
 </div>
 <form method="post">
     <div class="row">
-        <div class="col-4">Компьютер:</div>
+        <div class="col-4">Компьютеры:</div>
         <div class="col-8">
             <select id="computer" name="computer" class="form-control" asp-items="@(new SelectList(@ViewBag.Computer,"Id", "ComputerName"))"></select>
         </div>
@@ -35,16 +35,16 @@
     });
     function check() {
         var count = $('#count').val();
-    var car = $('#computer').val();
-    if (count && car) {
-    $.ajax({
-    method: "POST",
-    url: "/Home/Calc",
-    data: { count: count, computer: computer },
-    success: function (result) {
-    $("#sum").val(result);
-    }
-    });
-    };
+        var computer = $('#computer').val();
+        if (count && computer) {
+            $.ajax({
+                method: "POST",
+                url: "/Home/Calc",
+                data: { count: count, computer: computer },
+                success: function (result) {
+                    $("#sum").val(result);
+                }
+            });
+        };
     }
 </script>
