@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ComputersShopDatabaseImplement.Models
 {
-    internal class Order
+    public class Order
     {
         public int Id { get; set; }
         public int ComputerId { get; set; }

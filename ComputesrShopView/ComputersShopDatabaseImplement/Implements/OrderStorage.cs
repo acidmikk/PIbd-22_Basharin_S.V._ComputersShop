@@ -17,10 +17,12 @@ namespace ComputersShopDatabaseImplement.Implements
         {
             using var context = new ComputerShopDatabase();
 
-            return context.Orders.Include(rec => rec.Computer).Select(rec => new OrderViewModel
+            return context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client).Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
                 ComputerId = rec.ComputerId,
+                ClientId = rec.ClientId,
+                ClientFullName = rec.Client.FullName,
                 ComputerName = rec.Computer.ComputerName,
                 Count = rec.Count,
                 Sum = rec.Sum,
@@ -28,7 +30,6 @@ namespace ComputersShopDatabaseImplement.Implements
                 DateCreate = rec.DateCreate,
                 DateImplement = rec.DateImplement
             }).ToList();
-
         }
         public List<OrderViewModel> GetFilteredList(OrderBindingModel model)
         {
@@ -38,7 +39,8 @@ namespace ComputersShopDatabaseImplement.Implements
             }
             using var context = new ComputerShopDatabase();
             return context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client)
-            .Where(rec => rec.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) || (rec.ClientId == model.ClientId))
+            .Where(rec => rec.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && 
+            rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) || (rec.ClientId == model.ClientId))
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
@@ -68,20 +70,40 @@ namespace ComputersShopDatabaseImplement.Implements
         public void Insert(OrderBindingModel model)
         {
             using var context = new ComputerShopDatabase();
-            context.Orders.Add(CreateModel(model, new Order()));
-            context.SaveChanges();
+            using var transaction = context.Database.BeginTransaction();
+            try
+            {
+                context.Orders.Add(CreateModel(model, new Order()));
+                context.SaveChanges();
+                transaction.Commit();
+            }
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
 
         public void Update(OrderBindingModel model)
         {
             using var context = new ComputerShopDatabase();
-            var element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            using var transaction = context.Database.BeginTransaction();
+            try
             {
-                throw new Exception("Элемент не найден");
+                var element = context.Orders.FirstOrDefault(rec => rec.Id == model.Id);
+                if (element == null)
+                {
+                    throw new Exception("Элемент не найден");
+                }
+                CreateModel(model, element);
+                context.SaveChanges();
+                transaction.Commit();
             }
-            CreateModel(model, element);
-            context.SaveChanges();
+            catch
+            {
+                transaction.Rollback();
+                throw;
+            }
         }
         public void Delete(OrderBindingModel model)
         {
@@ -100,6 +122,7 @@ namespace ComputersShopDatabaseImplement.Implements
         private static Order CreateModel(OrderBindingModel model, Order order)
         {
             order.ComputerId = model.ComputerId;
+            order.ClientId = model.ClientId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -113,6 +136,9 @@ namespace ComputersShopDatabaseImplement.Implements
             {
                 Id = order.Id,
                 ComputerId = order.ComputerId,
+                ClientId = order.ClientId,
+                ClientFullName = order.Client.FullName,
+                ComputerName = order.Computer.ComputerName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status.ToString(),

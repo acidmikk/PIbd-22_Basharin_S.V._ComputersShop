@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComputersShopDatabaseImplement.Models
 {
-    internal class Component
+    public class Component
     {
         public int Id { get; set; }
         [Required]

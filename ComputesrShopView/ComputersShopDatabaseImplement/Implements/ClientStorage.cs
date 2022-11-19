@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ComputersShopContracts.BindingModels;
 using ComputersShopContracts.StoragesContracts;
 using ComputersShopContracts.ViewModels;
@@ -8,7 +10,7 @@ using ComputersShopDatabaseImplement.Models;
 
 namespace ComputersShopDatabaseImplement.Implements
 {
-    public class ClientStorage
+    public class ClientStorage : IClientStorage
     {
         public List<ClientViewModel> GetFullList()
         {

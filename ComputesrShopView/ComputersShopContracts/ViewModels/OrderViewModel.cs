@@ -6,10 +6,10 @@ namespace ComputersShopContracts.ViewModels
     public class OrderViewModel
     {
         public int Id { get; set; }
+        public int ComputerId { get; set; }
         public int ClientId { get; set; }
         [DisplayName("ФИО Клиента")]
         public string ClientFullName { get; set; }
-        public int ComputerId { get; set; }
         [DisplayName("Компьютер")]
         public string ComputerName { get; set; }
         [DisplayName("Количество")]

@@ -16,6 +16,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopFileImplement"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputersShopDatabaseImplement", "ComputersShopDatabaseImplement\ComputersShopDatabaseImplement.csproj", "{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShopRestApi", "ComputersShopRestApi\ComputersShopRestApi.csproj", "{6DB24AC3-236C-4926-9CBF-53320D6EBED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputersShowClientApp", "ComputersShowClientApp\ComputersShowClientApp.csproj", "{BAD140B1-BBEA-4FB2-A09F-3CFE3EBF5CC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,14 @@ Global
 		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1B3367D-B575-49E7-A8F5-26AB13FA4AB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DB24AC3-236C-4926-9CBF-53320D6EBED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DB24AC3-236C-4926-9CBF-53320D6EBED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DB24AC3-236C-4926-9CBF-53320D6EBED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DB24AC3-236C-4926-9CBF-53320D6EBED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAD140B1-BBEA-4FB2-A09F-3CFE3EBF5CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAD140B1-BBEA-4FB2-A09F-3CFE3EBF5CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAD140B1-BBEA-4FB2-A09F-3CFE3EBF5CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAD140B1-BBEA-4FB2-A09F-3CFE3EBF5CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

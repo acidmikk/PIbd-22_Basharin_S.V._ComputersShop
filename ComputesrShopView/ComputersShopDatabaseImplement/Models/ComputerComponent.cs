@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ComputersShopDatabaseImplement.Models
 {
-    internal class ComputerComponent
+    public class ComputerComponent
     {
         public int Id { get; set; }
         public int ComputerId { get; set; }
