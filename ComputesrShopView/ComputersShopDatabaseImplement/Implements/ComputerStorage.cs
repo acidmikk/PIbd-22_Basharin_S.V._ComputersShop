@@ -117,8 +117,7 @@ namespace ComputersShopDatabaseImplement.Implements
                 var computerComponent = context.ComputerComponents.Where(rec =>
                rec.ComputerId == model.Id.Value).ToList();
                 // удалили те, которых нет в модели
-                context.ComputerComponents.RemoveRange(computerComponent.Where(rec =>
-               !model.ComputerComponents.ContainsKey(rec.ComponentId)).ToList());
+                context.ComputerComponents.RemoveRange(computerComponent.Where(rec => !model.ComputerComponents.ContainsKey(rec.ComponentId)).ToList());
                 context.SaveChanges();
                 // обновили количество у существующих записей
                 foreach (var updateDetail in computerComponent)
