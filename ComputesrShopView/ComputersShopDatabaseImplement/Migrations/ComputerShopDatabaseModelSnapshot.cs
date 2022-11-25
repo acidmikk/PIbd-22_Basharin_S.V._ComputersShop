@@ -110,6 +110,29 @@ namespace ComputersShopDatabaseImplement.Migrations
                     b.ToTable("ComputerComponents");
                 });
 
+            modelBuilder.Entity("ComputersShopDatabaseImplement.Models.Implementer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ImplementerFullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PauseTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingTime")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Implementers");
+                });
+
             modelBuilder.Entity("ComputersShopDatabaseImplement.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -133,6 +156,10 @@ namespace ComputersShopDatabaseImplement.Migrations
                     b.Property<DateTime?>("DateImplement")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ImplementerId")
+                        .IsRequired()
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -144,6 +171,8 @@ namespace ComputersShopDatabaseImplement.Migrations
                     b.HasIndex("ClientId");
 
                     b.HasIndex("ComputerId");
+
+                    b.HasIndex("ImplementerId");
 
                     b.ToTable("Orders");
                 });
@@ -181,9 +210,17 @@ namespace ComputersShopDatabaseImplement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ComputersShopDatabaseImplement.Models.Implementer", "Implementer")
+                        .WithMany("Orders")
+                        .HasForeignKey("ImplementerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Client");
 
                     b.Navigation("Computer");
+
+                    b.Navigation("Implementer");
                 });
 
             modelBuilder.Entity("ComputersShopDatabaseImplement.Models.Client", b =>
@@ -201,6 +238,11 @@ namespace ComputersShopDatabaseImplement.Migrations
                     b.Navigation("ComputerComponents");
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("ComputersShopDatabaseImplement.Models.Implementer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

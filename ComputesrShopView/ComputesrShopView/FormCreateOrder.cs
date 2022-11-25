@@ -32,13 +32,12 @@ namespace ComputersShopView
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
-            // прописать логику
             try
             {
                 List<ComputerViewModel> list = _logicC.Read(null);
                 if (list != null)
                 {
-                    comboBoxComputer.DisplayMember = "CarName";
+                    comboBoxComputer.DisplayMember = "ComputerName";
                     comboBoxComputer.ValueMember = "Id";
                     comboBoxComputer.DataSource = list;
                     comboBoxComputer.SelectedItem = null;
@@ -113,7 +112,7 @@ namespace ComputersShopView
             {
                 int cars = Convert.ToInt32(comboBoxComputer.SelectedValue);
                 int Counst = Convert.ToInt32(textBoxCount.Text);
-                decimal Sums = Convert.ToDecimal(textBoxSum.Text);
+                int Sums = Convert.ToInt32(textBoxSum.Text);
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
                     ComputerId = Convert.ToInt32(comboBoxComputer.SelectedValue),
@@ -121,15 +120,13 @@ namespace ComputersShopView
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)
                 });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
-               MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

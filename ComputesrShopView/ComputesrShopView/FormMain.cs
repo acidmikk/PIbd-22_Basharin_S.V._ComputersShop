@@ -11,11 +11,15 @@ namespace ComputersShopView
     {
         private readonly IOrderLogic _orderLogic;
         private readonly IReportLogic _reportLogic;
-        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic)
+        private readonly IImplementerLogic _implementerLogic;
+        private readonly IWorkProcess _workProcess;
+        public FormMain(IOrderLogic orderLogic, IReportLogic reportLogic, IImplementerLogic implementerLogic, IWorkProcess workProcess)
         {
             InitializeComponent();
             _orderLogic = orderLogic;
             _reportLogic = reportLogic;
+            _implementerLogic = implementerLogic;
+            _workProcess = workProcess;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -31,7 +35,9 @@ namespace ComputersShopView
                     dataGridView.DataSource = list;
                     dataGridView.Columns[0].Visible = false;
                     dataGridView.Columns[1].Visible = false;
-                    dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridView.Columns[2].Visible = false;
+                    dataGridView.Columns[3].Visible = false;
+                    dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -79,7 +85,7 @@ namespace ComputersShopView
             form.ShowDialog();
             LoadData();
         }
-        private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
+        /*private void ButtonTakeOrderInWork_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
@@ -118,7 +124,7 @@ namespace ComputersShopView
                    MessageBoxIcon.Error);
                 }
             }
-        }
+        }*/
         private void ButtonIssuedOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -147,6 +153,16 @@ namespace ComputersShopView
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Program.Container.Resolve<FormClients>();
+            form.ShowDialog();
+        }
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _workProcess.DoWork(_implementerLogic, _orderLogic);
+        }
+
+        private void исполнителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormImplementers>();
             form.ShowDialog();
         }
     }

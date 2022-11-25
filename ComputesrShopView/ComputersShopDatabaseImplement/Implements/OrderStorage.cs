@@ -17,12 +17,16 @@ namespace ComputersShopDatabaseImplement.Implements
         {
             using var context = new ComputerShopDatabase();
 
-            return context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client).Select(rec => new OrderViewModel
+            return context.Orders.Include(rec => rec.Computer)
+                .Include(rec => rec.Client).Include(rec => rec.Implementer)
+                .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
                 ComputerId = rec.ComputerId,
                 ClientId = rec.ClientId,
                 ClientFullName = rec.Client.FullName,
+                ImplementerId = rec.ImplementerId,
+                ImplementerFullName = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFullName : string.Empty,
                 ComputerName = rec.Computer.ComputerName,
                 Count = rec.Count,
                 Sum = rec.Sum,
@@ -38,15 +42,25 @@ namespace ComputersShopDatabaseImplement.Implements
                 return null;
             }
             using var context = new ComputerShopDatabase();
-            return context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client)
-            .Where(rec => rec.ComputerId == model.ComputerId || (model.DateFrom.HasValue && model.DateTo.HasValue && 
-            rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo) || (rec.ClientId == model.ClientId))
+            return context.Orders
+            .Include(rec => rec.Computer)
+            .Include(rec => rec.Client)
+            .Include(rec => rec.Implementer)
+            .Where(rec => (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date) ||
+                (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <=
+                model.DateTo.Value.Date) ||
+                (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                (model.SearchStatus.HasValue && model.SearchStatus.Value == rec.Status) ||
+                (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && model.Status == rec.Status))
             .Select(rec => new OrderViewModel
             {
                 Id = rec.Id,
                 ComputerId = rec.ComputerId,
                 ClientId = rec.ClientId,
                 ClientFullName = rec.Client.FullName,
+                ImplementerId = rec.ImplementerId,
+                ImplementerFullName = rec.ImplementerId.HasValue ? rec.Implementer.ImplementerFullName : string.Empty,
                 ComputerName = rec.Computer.ComputerName,
                 Count = rec.Count,
                 Sum = rec.Sum,
@@ -62,9 +76,9 @@ namespace ComputersShopDatabaseImplement.Implements
                 return null;
             }
             using var context = new ComputerShopDatabase();
-            var component = context.Orders
+            var order = context.Orders.Include(rec => rec.Computer).Include(rec => rec.Client).Include(rec => rec.Implementer)
                 .FirstOrDefault(rec => rec.Id == model.Id);
-            return component != null ? CreateModel(component) : null;
+            return order != null ? CreateModel(order) : null;
         }
 
         public void Insert(OrderBindingModel model)
@@ -123,6 +137,7 @@ namespace ComputersShopDatabaseImplement.Implements
         {
             order.ComputerId = model.ComputerId;
             order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -137,6 +152,8 @@ namespace ComputersShopDatabaseImplement.Implements
                 Id = order.Id,
                 ComputerId = order.ComputerId,
                 ClientId = order.ClientId,
+                ImplementerId = order.ImplementerId,
+                ImplementerFullName = order.ImplementerId.HasValue ? order.Implementer.ImplementerFullName : String.Empty,
                 //ClientFullName = order.Client.FullName,
                 //ComputerName = order.Computer.ComputerName,
                 Count = order.Count,

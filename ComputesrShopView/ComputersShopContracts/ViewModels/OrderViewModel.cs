@@ -8,6 +8,9 @@ namespace ComputersShopContracts.ViewModels
         public int Id { get; set; }
         public int ComputerId { get; set; }
         public int ClientId { get; set; }
+        public int? ImplementerId { get; set; }
+        [DisplayName("ФИО исполнителя")]
+        public string ImplementerFullName { get; set; }
         [DisplayName("ФИО Клиента")]
         public string ClientFullName { get; set; }
         [DisplayName("Компьютер")]

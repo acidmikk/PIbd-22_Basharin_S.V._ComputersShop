@@ -52,6 +52,21 @@ namespace ComputersShopDatabaseImplement.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Implementers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImplementerFullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkingTime = table.Column<int>(type: "int", nullable: false),
+                    PauseTime = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Implementers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ComputerComponents",
                 columns: table => new
                 {
@@ -86,6 +101,7 @@ namespace ComputersShopDatabaseImplement.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ComputerId = table.Column<int>(type: "int", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
+                    ImplementerId = table.Column<int>(type: "int", nullable: true),
                     Count = table.Column<int>(type: "int", nullable: false),
                     Sum = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -105,6 +121,12 @@ namespace ComputersShopDatabaseImplement.Migrations
                         name: "FK_Orders_Computers_ComputerId",
                         column: x => x.ComputerId,
                         principalTable: "Computers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Implementers_ImplementerId",
+                        column: x => x.ImplementerId,
+                        principalTable: "Implementers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -128,6 +150,11 @@ namespace ComputersShopDatabaseImplement.Migrations
                 name: "IX_Orders_ComputerId",
                 table: "Orders",
                 column: "ComputerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_ImplementerId",
+                table: "Orders",
+                column: "ImplementerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -146,6 +173,9 @@ namespace ComputersShopDatabaseImplement.Migrations
 
             migrationBuilder.DropTable(
                 name: "Computers");
+
+            migrationBuilder.DropTable(
+                name: "Implementers");
         }
     }
 }

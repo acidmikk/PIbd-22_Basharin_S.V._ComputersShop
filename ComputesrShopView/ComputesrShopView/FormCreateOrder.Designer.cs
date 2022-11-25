@@ -92,6 +92,7 @@ namespace ComputersShopView
             this.textBoxSum.Location = new System.Drawing.Point(116, 102);
             this.textBoxSum.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxSum.Name = "textBoxSum";
+            this.textBoxSum.ReadOnly = true;
             this.textBoxSum.Size = new System.Drawing.Size(266, 23);
             this.textBoxSum.TabIndex = 5;
             // 
