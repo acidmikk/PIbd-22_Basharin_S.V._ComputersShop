@@ -20,7 +20,7 @@ namespace ComputersShopDatabaseImplement.Models
         [Required]
         public int Sum { get; set; }
         [Required]
-        public OrderStatus Status { get; set; }
+        public OrderStatus? Status { get; set; }
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
