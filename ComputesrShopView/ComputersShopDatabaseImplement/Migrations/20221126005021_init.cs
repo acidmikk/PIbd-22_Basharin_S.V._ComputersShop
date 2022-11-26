@@ -127,8 +127,7 @@ namespace ComputersShopDatabaseImplement.Migrations
                         name: "FK_Orders_Implementers_ImplementerId",
                         column: x => x.ImplementerId,
                         principalTable: "Implementers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

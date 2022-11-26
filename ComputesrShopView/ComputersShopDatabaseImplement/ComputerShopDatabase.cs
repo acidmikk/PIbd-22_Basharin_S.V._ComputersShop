@@ -18,6 +18,11 @@ namespace ComputersShopDatabaseImplement
             }
             base.OnConfiguring(optionsBuilder);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>().Property(m => m.ImplementerId).IsRequired(false);
+            base.OnModelCreating(modelBuilder);
+        }
         public virtual DbSet<Component> Components { set; get; }
         public virtual DbSet<Computer> Computers { set; get; }
         public virtual DbSet<ComputerComponent> ComputerComponents { set; get; }

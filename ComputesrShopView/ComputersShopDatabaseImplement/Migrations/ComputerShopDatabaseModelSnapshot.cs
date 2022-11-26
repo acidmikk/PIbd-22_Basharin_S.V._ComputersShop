@@ -157,7 +157,6 @@ namespace ComputersShopDatabaseImplement.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("ImplementerId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -212,9 +211,7 @@ namespace ComputersShopDatabaseImplement.Migrations
 
                     b.HasOne("ComputersShopDatabaseImplement.Models.Implementer", "Implementer")
                         .WithMany("Orders")
-                        .HasForeignKey("ImplementerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ImplementerId");
 
                     b.Navigation("Client");
 

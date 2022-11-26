@@ -28,9 +28,13 @@ namespace ComputersShopFileImplement.Implements
                 return null;
             }
             return source.Orders
-            .Where(rec => rec.ComputerId == model.ComputerId)
-           .Select(CreateModel)
-           .ToList();
+            .Where(rec => rec.ComputerId.Equals(model.ComputerId) || (model.DateFrom.HasValue && model.DateTo.HasValue &&
+                rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
+                 || (model.ClientId.HasValue && rec.ClientId == model.ClientId.Value)
+                || (model.SearchStatus.HasValue && model.SearchStatus.Value == rec.Status)
+                || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && model.Status == rec.Status))
+                .Select(CreateModel)
+                .ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -72,6 +76,8 @@ namespace ComputersShopFileImplement.Implements
         private static Order CreateModel(OrderBindingModel model, Order order)
         {
             order.ComputerId = model.ComputerId;
+            order.ClientId = model.ClientId.Value;
+            order.ImplementerId = model.ImplementerId.Value;
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -95,7 +101,11 @@ namespace ComputersShopFileImplement.Implements
             {
                 Id = order.Id,
                 ComputerId = order.ComputerId,
-                ComputerName = computerName,
+                ComputerName = source.Computers.FirstOrDefault(rec => rec.Id == order.ComputerId)?.ComputerName,
+                ClientId = order.ClientId,
+                ClientFullName = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId)?.ClientFullName,
+                ImplementerId = order.ImplementerId,
+                ImplementerFullName = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId)?.ImplementerFullName,
                 Count = order.Count,
                 Sum = order.Sum,
                 Status = order.Status.ToString(),
