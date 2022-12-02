@@ -165,5 +165,10 @@ namespace ComputersShopView
             var form = Program.Container.Resolve<FormImplementers>();
             form.ShowDialog();
         }
+        private void письмаКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Program.Container.Resolve<FormMessageInfo>();
+            form.ShowDialog();
+        }
     }
 }

@@ -39,6 +39,7 @@
             this.компонентыПоКомпьютерамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЗаказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запускРаботToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.письмаКлиентовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonIssuedOrder = new System.Windows.Forms.Button();
@@ -66,7 +67,8 @@
             this.компонентыToolStripMenuItem,
             this.компьютерыToolStripMenuItem,
             this.клиентыToolStripMenuItem,
-            this.исполнителиToolStripMenuItem});
+            this.исполнителиToolStripMenuItem,
+            this.письмаКлиентовToolStripMenuItem});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -108,6 +110,13 @@
             this.отчётыToolStripMenuItem.Name = "отчётыToolStripMenuItem";
             this.отчётыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.отчётыToolStripMenuItem.Text = "Отчёты";
+            // 
+            // письмаКлиентовToolStripMenuItem
+            // 
+            this.письмаКлиентовToolStripMenuItem.Name = "письмаКлиентовToolStripMenuItem";
+            this.письмаКлиентовToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.письмаКлиентовToolStripMenuItem.Text = "Письма клиентов";
+            this.письмаКлиентовToolStripMenuItem.Click += new System.EventHandler(this.письмаКлиентовToolStripMenuItem_Click);
             // 
             // списокКомпонентовToolStripMenuItem
             // 
@@ -223,5 +232,6 @@
         private ToolStripMenuItem клиентыToolStripMenuItem;
         private ToolStripMenuItem исполнителиToolStripMenuItem;
         private ToolStripMenuItem запускРаботToolStripMenuItem;
+        private ToolStripMenuItem письмаКлиентовToolStripMenuItem;
     }
 }

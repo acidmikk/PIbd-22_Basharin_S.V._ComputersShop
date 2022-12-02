@@ -12,10 +12,12 @@ namespace ComputersShopRestApi.Controllers
     {
         private readonly IOrderLogic _order;
         private readonly IComputerLogic _computer;
-        public MainController(IOrderLogic order, IComputerLogic computer)
+        private readonly IMessageInfoLogic _messageInfoLogic;
+        public MainController(IOrderLogic order, IComputerLogic computer, IMessageInfoLogic messageInfoLogic)
         {
             _order = order;
             _computer = computer;
+            _messageInfoLogic = messageInfoLogic;
         }
         [HttpGet]
         public List<ComputerViewModel> GetComputerList() => _computer.Read(null)?.ToList();
@@ -25,6 +27,12 @@ namespace ComputersShopRestApi.Controllers
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel { ClientId = clientId });
         [HttpPost]
         public void CreateOrder(CreateOrderBindingModel model) => _order.CreateOrder(model);
+        [HttpGet]
+        public List<MessageInfoViewModel> GetMessage(int clientId) =>
+          _messageInfoLogic.Read(new MessageInfoBindingModel
+          {
+              ClientId = clientId
+          });
     }
 }
 

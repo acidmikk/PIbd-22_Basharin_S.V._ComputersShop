@@ -20,5 +20,7 @@ namespace ComputersShopDatabaseImplement.Models
         public string Password { get; set; }
         [ForeignKey("ClientId")]
         public List<Order> Orders { get; set; }
+        [ForeignKey("ClientId")]
+        public List<MessageInfo> Messages { get; set; }
     }
 }

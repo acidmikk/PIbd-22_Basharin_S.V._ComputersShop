@@ -9,6 +9,10 @@ using System;
 using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
+using ComputersShopBusinessLogic.MailWorker;
+using ComputersShopContracts.BindingModels;
+using System.Configuration;
+using System.Threading;
 
 namespace ComputersShopView
 {
@@ -33,6 +37,24 @@ namespace ComputersShopView
         static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
+
+            var mailSender = Container.Resolve<AbstractMailWorker>();
+            mailSender.MailConfig(new MailConfigBindingModel
+            {
+                MailLogin = ConfigurationManager.AppSettings["MailLogin"],
+                MailPassword =
+            ConfigurationManager.AppSettings["MailPassword"],
+                SmtpClientHost =
+            ConfigurationManager.AppSettings["SmtpClientHost"],
+                SmtpClientPort =
+            Convert.ToInt32(ConfigurationManager.AppSettings["SmtpClientPort"]),
+                PopHost = ConfigurationManager.AppSettings["PopHost"],
+                PopPort =
+            Convert.ToInt32(ConfigurationManager.AppSettings["PopPort"])
+            });
+            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), null, 0,
+           100000);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(Container.Resolve<FormMain>());
@@ -55,7 +77,11 @@ namespace ComputersShopView
             currentContainer.RegisterType<ComputerSaveToPdf, SaveToPdf>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ComputerSaveToWord, SaveToWord>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IWorkProcess, WorkModeling>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMessageInfoStorage, MessageInfoStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IMessageInfoLogic, MessageInfoLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<AbstractMailWorker, MailKitWorker>(new SingletonLifetimeManager());
             return currentContainer;
         }
+        private static void MailCheck(object obj) => Container.Resolve<AbstractMailWorker>().MailCheck();
     }
 }

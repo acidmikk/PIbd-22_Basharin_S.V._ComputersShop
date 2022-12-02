@@ -134,6 +134,14 @@ namespace ComputersShowClientApp.Controllers
             ComputerViewModel comp = APIClient.GetRequest<ComputerViewModel>($"api/main/getcomputer?computerId={computer}");
             return count * comp.Price;
         }
-
+        public IActionResult MessageInfo()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            return View(APIClient.GetRequest<List<MessageInfoViewModel>>
+                ($"api/main/GetMessage?clientId={Program.Client.Id}"));
+        }
     }
 }

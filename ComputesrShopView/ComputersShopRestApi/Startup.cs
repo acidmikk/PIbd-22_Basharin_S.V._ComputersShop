@@ -1,4 +1,6 @@
 ﻿using ComputersShopBusinessLogic.BusinessLogics;
+using ComputersShopBusinessLogic.MailWorker;
+using ComputersShopContracts.BindingModels;
 using ComputersShopContracts.BusinessLogicsContracts;
 using ComputersShopContracts.StoragesContracts;
 using ComputersShopDatabaseImplement.Implements;
@@ -20,10 +22,13 @@ namespace ComputersShopRestApi
             services.AddTransient<IClientStorage, ClientStorage>();
             services.AddTransient<IOrderStorage, OrderStorage>();
             services.AddTransient<IComputerStorage, ComputerStorage>();
+            services.AddTransient<IMessageInfoStorage, MessageInfoStorage>();
 
             services.AddTransient<IOrderLogic, OrderLogic>();
             services.AddTransient<IClientLogic, ClientLogic>();
             services.AddTransient<IComputerLogic, ComputerLogic>();
+            services.AddTransient<IMessageInfoLogic, MessageInfoLogic>();
+            services.AddSingleton<AbstractMailWorker, MailKitWorker>();
 
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo{ Title = "ComputersShopRestApi", Version = "v1" }); });
@@ -43,6 +48,16 @@ namespace ComputersShopRestApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+            var mailSender = app.ApplicationServices.GetService<AbstractMailWorker>();
+            mailSender.MailConfig(new MailConfigBindingModel
+            {
+                MailLogin = Configuration?.GetSection("MailLogin")?.Value.ToString(),
+                MailPassword = Configuration?.GetSection("MailPassword")?.Value.ToString(),
+                SmtpClientHost = Configuration?.GetSection("SmtpClientHost")?.Value.ToString(),
+                SmtpClientPort = Convert.ToInt32(Configuration?.GetSection("SmtpClientPort")?.Value.ToString()),
+                PopHost = Configuration?.GetSection("PopHost")?.Value.ToString(),
+                PopPort = Convert.ToInt32(Configuration?.GetSection("PopPort")?.Value.ToString())
             });
         }
 
