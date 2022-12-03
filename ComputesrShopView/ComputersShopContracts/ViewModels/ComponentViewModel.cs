@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using ComputersShopContracts.Attributes;
+using System.ComponentModel;
 
 namespace ComputersShopContracts.ViewModels
 {
@@ -9,6 +10,7 @@ namespace ComputersShopContracts.ViewModels
     {
         public int Id { get; set; }
         [DisplayName("Название компонента")]
+        [Column(title: "Название компонента", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ComponentName { get; set; }
     }
 
